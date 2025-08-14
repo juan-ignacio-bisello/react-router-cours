@@ -1,8 +1,16 @@
-import { AuthLayout } from '@/auth/layout/AuthLayout'
-import { LoginPage } from '@/auth/layout/pages/LoginPage'
-import { RegisterPage } from '@/auth/layout/pages/RegisterPage'
-import { Navigate } from 'react-router'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { lazy, Suspense } from 'react';
+import { Navigate } from 'react-router';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { AuthLayout } from '@/auth/layout/AuthLayout';
+import { LoginPage } from '@/auth/layout/pages/LoginPage';
+import { RegisterPage } from '@/auth/layout/pages/RegisterPage';
+
+import { sleep } from '@/lib/sleep';
+
+const ChatLayout = lazy( async() => {
+  await sleep( 1500 );
+  return import('@/chat/layout/ChatLayout');
+})
 
 export const AppRouter = () => {
   return (
@@ -12,6 +20,14 @@ export const AppRouter = () => {
               <Route index element={ <LoginPage /> } />
               <Route path='/auth/register' element={ <RegisterPage /> } />
             </Route>
+
+            <Route path='/chat' element={ 
+                <Suspense
+                  fallback={<div>Loading...</div>}
+                >
+                  <ChatLayout />
+                </Suspense>
+             } />
 
             <Route path='/' element={ <Navigate to='/auth' /> } />
             <Route path='*' element={ <Navigate to='/auth' /> } />
