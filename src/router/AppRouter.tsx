@@ -2,8 +2,8 @@ import { lazy, Suspense } from 'react';
 import { Navigate } from 'react-router';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { AuthLayout } from '@/auth/layout/AuthLayout';
-import { LoginPage } from '@/auth/layout/pages/LoginPage';
-import { RegisterPage } from '@/auth/layout/pages/RegisterPage';
+import { LoginPage } from '@/auth/pages/LoginPage';
+import { RegisterPage } from '@/auth/pages/RegisterPage';
 
 import { sleep } from '@/lib/sleep';
 
