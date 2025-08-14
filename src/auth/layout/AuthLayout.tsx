@@ -1,5 +1,4 @@
 import { Outlet } from "react-router"
-import { LoginPage } from "./pages/LoginPage"
 
 
 export const AuthLayout = () => {
